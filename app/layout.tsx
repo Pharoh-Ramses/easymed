@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import FontSans from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
-const fontSans = localFont({
+const fontSans = FontSans({
   src: [
     {
       path: "../public/fonts/semplicitapro-light-webfont.woff2",
@@ -32,12 +32,15 @@ const fontSans = localFont({
       style: "normal",
     },
   ],
-  variable: "--font-semplicitapro",
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
   title: "Easymed",
   description: "An easy to use medical app",
+  icons: {
+    icon: "/assets/icons/logo-icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -53,10 +56,11 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
         </ThemeProvider>
       </body>
     </html>
   );
 }
+
