@@ -28,7 +28,6 @@ import SubmitButton from "../SubmitButton";
 import { FormFieldType } from "./PatientForm";
 
 const RegisterForm = ({ user }: { user: User }) => {
-    console.log("This is the user passed to the form", user);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -63,6 +62,8 @@ const RegisterForm = ({ user }: { user: User }) => {
         birthDate: new Date(values.birthDate),
         identificationDocument: formData,
       };
+      console.log("Checking to see the document being sent: ", patientData);
+
       // @ts-ignore
       const patient = await registerPatient(patientData);
 

@@ -41,7 +41,6 @@ export const createUser = async (user: CreateUserParams) => {
 };
 
 export const getUser = async (userId: string) => {
-    console.log("This is the userId, running through the getUser function", userId);
   try {
     const user = await users.get(userId);
 
@@ -69,7 +68,7 @@ export const registerPatient = async ({
       PATIENT_COLLECTION_ID!,
       ID.unique(),
       {
-        identificationDocumentID: file?.$id || null,
+        identificationDocumentId: file?.$id || null,
         identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
         ...patient,
       },
@@ -77,5 +76,22 @@ export const registerPatient = async ({
     return parseStringify(newPatient);
   } catch (error) {
     console.error("An error occurred while creating a patient:", error);
+  }
+};
+
+export const getPatient = async (userId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", [userId])]
+    );
+
+    return parseStringify(patients.documents[0]);
+  } catch (error) {
+    console.error(
+      "An error occurred while retrieving the patient details:",
+      error
+    );
   }
 };
