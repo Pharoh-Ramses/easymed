@@ -6,8 +6,9 @@ import {
   DATABASE_ID,
   databases,
 } from "../appwrite.config";
-import { parseStringify } from "../utils";
+import { formatDateTime, parseStringify } from "../utils";
 import { Appointment } from "@/types/appwrite.types";
+import { revalidatePath } from "next/cache";
 
 export const createAppointment = async (
   appointment: CreateAppointmentParams,
@@ -57,11 +58,11 @@ export const getRecentAppointmentList = async () => {
     const counts = (appointments.documents as Appointment[]).reduce(
       (acc, appointment) => {
         if (appointment.status === "scheduled") {
-          acc.scheduled ++;
+          acc.scheduled++;
         } else if (appointment.status === "pending") {
-          acc.pending ++;
+          acc.pending++;
         } else if (appointment.status === "cancelled") {
-          acc.cancelled ++;
+          acc.cancelled++;
         }
         return acc;
       },
@@ -77,5 +78,32 @@ export const getRecentAppointmentList = async () => {
     return parseStringify(data);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const updateAppointment = async ({
+  appointmentId,
+  userId,
+  timeZone,
+  appointment,
+  type,
+}: UpdateAppointmentParams) => {
+  try {
+    const updatedAppointment = await databases.updateDocument(
+      DATABASE_ID!,
+      APPOINTMENT_COLLECTION_ID!,
+      appointmentId,
+      appointment,
+    );
+
+    if (!updatedAppointment) throw Error;
+
+  //const smsMessage = `Greetings from Easymed. ${type === "schedule" ? `Your appointment is confirmed for ${formatDateTime(appointment.schedule!, timeZone).dateTime} with Dr ${appointment.primaryPhysician}` : `We regret to inform you that the appointment for ${formatDateTime(appointment.shcedule!, timeZone).dateTime} is cancelled. Reason: ${appointment.cancellationReason}`}.`;
+    //await sendSMSNotification(userId, smsMessage);
+
+    revalidatePath("/admin");
+    return parseStringify(updatedAppointment);
+  } catch (error) {
+    console.error("An error occurred while updating the appointment:", error);
   }
 };
