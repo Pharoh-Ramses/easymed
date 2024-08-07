@@ -45,7 +45,7 @@ export const columns: ColumnDef<Appointment>[] = [
         <div className="flex items-center gap-3">
           <Image
             src={doctor?.image!}
-            alt={doctor?.name}
+            alt={doctor!.name}
             width={100}
             height={100}
             className="size-8 w-fit"
@@ -63,12 +63,14 @@ export const columns: ColumnDef<Appointment>[] = [
         <div className="flex gap-1">
           <AppointmentModal
             type="schedule"
+            // @ts-ignore
             patientId={data.patient.id}
             userId={data.userId}
             appointment={data}
           />
           <AppointmentModal 
             type="cancel"
+            // @ts-ignore
             patientId={data.patient.id}
             userId={data.userId}
             appointment={data}

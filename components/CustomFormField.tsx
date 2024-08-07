@@ -3,7 +3,6 @@ import Image from "next/image";
 import { FormFieldType } from "./forms/PatientForm";
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 import { Checkbox } from "./ui/checkbox";
+import { E164Number } from "libphonenumber-js/core";
 
 interface CustomProps {
   control: Control<any>;
@@ -75,7 +75,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             placeholder={placeholder}
             international
             withCountryCallingCode
-            value={field.value as e164Number | undefined}
+            value={field.value as E164Number | undefined}
             onChange={field.onChange}
             className="input-phone"
           />

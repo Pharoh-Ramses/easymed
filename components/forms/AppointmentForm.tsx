@@ -27,7 +27,7 @@ const AppointmentForm = ({
   patientId: string;
   type: "create" | "cancel" | "schedule";
   appointment?: Appointment;
-  setOpen: (open: boolean) => void;
+  setOpen?: (open: boolean) => void;
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -87,7 +87,7 @@ const AppointmentForm = ({
       } else {
         const appointmentToUpdate = {
           userId,
-          appointmentId: appointment?.$id,
+          appointmentId: appointment!.$id,
           appointment: {
             primaryPhysician: values.primaryPhysician,
             reason: values.reason!,
