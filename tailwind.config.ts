@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 const config = {
@@ -35,7 +34,13 @@ const config = {
           700: "#F24E43",
         },
         light: {
+          100: "#FFFFFF",
           200: "#E8E9E9",
+          300: "#F5F5F5",
+          400: "#EAEAEA",
+          500: "#D4D4D4",
+          600: "#A3A3A3",
+          700: "#737373",
         },
         dark: {
           200: "#0D0F10",
@@ -50,7 +55,7 @@ const config = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       backgroundImage: {
-        appointments: "url('/assets/images/appointments-bg.png')",
+        appointments: "url('/assets/images/appointments-bg.jpg')",
         pending: "url('/assets/images/pending-bg.png')",
         cancelled: "url('/assets/images/cancelled-bg.png')",
       },
