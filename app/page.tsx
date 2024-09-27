@@ -1,10 +1,16 @@
+"use client";
+
 import PatientForm from "@/components/forms/PatientForm";
 import PasskeyModal from "@/components/PasskeyModal";
 import Image from "next/image";
 import Link from "next/link";
+import {Button} from "@/components/ui/button";
+import {ModeToggle} from "@/components/ModeToggle";
+
 
 export default function Home({ searchParams }: SearchParamProps) {
     const isAdmin = searchParams.admin === "true";
+
     return (
         <div className="flex h-screen max-h-screen">
             {isAdmin && <PasskeyModal />}
@@ -22,9 +28,13 @@ export default function Home({ searchParams }: SearchParamProps) {
                         <p className="justify-items-end text-dark-600 xl:text-left">
                             © 2024 Easymed
                         </p>
-                        <Link href="/?admin=true" className="text-green-500">
-                            Admin
-                        </Link>
+                        <div className="flex gap-4 items-center">
+                            <Link href="/?admin=true" className="text-green-500">
+                                Admin
+                            </Link>
+                            <ModeToggle />
+
+                        </div>
                     </div>
                 </div>
             </section>

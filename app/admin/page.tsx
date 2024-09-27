@@ -4,25 +4,28 @@ import { getRecentAppointmentList } from "@/lib/actions/appointment.actions";
 import Image from "next/image";
 import React from "react";
 import { columns } from "@/components/table/columns";
+import Link from "next/link";
 
 const Admin = async () => {
   const appointments = await getRecentAppointmentList();
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
       <header className="admin-header">
+        <Link href="/" >
         <Image
           src="/assets/icons/logo-full.svg"
-          width={162}
-          height={32}
+          width={500}
+          height={100}
           alt="Logo"
           className="h-8 w-fit"
         />
-        <p className="text-16-semibold">Admin Dashboard</p>
+        </Link>
+        <p className="text-16-semibold text-white">Admin Dashboard</p>
       </header>
       <main className="admin-main">
         <section className="w-full space-y-4">
           <h1 className="header">Welcome</h1>
-          <p className="text-dark-700">
+          <p className="text-dark-900">
             Start the day with managing new appointments
           </p>
         </section>
