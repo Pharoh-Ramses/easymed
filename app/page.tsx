@@ -26,7 +26,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                     <PatientForm />
                     <div className="text-14-regular mt-20 flex justify-between">
                         <p className="justify-items-end text-dark-600 xl:text-left">
-                            © 2024 Easymed
+                            © 2024 easymed
                         </p>
                         <div className="flex gap-4 items-center">
                             <Link href="/?admin=true" className="text-green-500">
@@ -39,7 +39,7 @@ export default function Home({ searchParams }: SearchParamProps) {
                 </div>
             </section>
             <Image
-                src="/assets/images/onboarding-img.jpg"
+                src="/assets/images/onboarding-img.png"
                 height={1000}
                 width={1000}
                 alt="An image of doctors smiling in an approachable manner"

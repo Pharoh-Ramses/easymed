@@ -36,7 +36,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-    title: "Easymed",
+    title: "easymed",
     description: "An easy to use medical app",
     icons: {
         icon: "/assets/icons/logo-icon.svg",
