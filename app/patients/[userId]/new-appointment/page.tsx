@@ -1,4 +1,6 @@
 import AppointmentForm from "@/components/forms/AppointmentForm";
+import TimeSlotPicker from "@/components/scheduling/TimeSlotPicker";
+import { providerAvailabilities } from "@/components/scheduling/constants";
 import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import * as Sentry from "@sentry/nextjs";
@@ -24,6 +26,9 @@ export default async function NewAppointment({
             userId={userId}
             patientId={patient.$id}
           />
+          <div className="mt-10">
+            <TimeSlotPicker availabilities={providerAvailabilities} />
+          </div>
           <p className="copyright mt-10 py-12">© 2024 easymed</p>
         </div>
       </section>
